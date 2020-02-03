@@ -6,9 +6,16 @@
   },
   "routes": [
     {
+      "source": "(cf-cli/)(.*)",
+      "destination": "doc_mod_be",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
       "localDir": "resources",
       "source": "^/(.*)",
       "authenticationType": "none"
     }
   ]
 }
+

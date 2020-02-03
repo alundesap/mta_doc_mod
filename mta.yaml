@@ -7,6 +7,20 @@ modules:
 
 ### New Modules Here ###
 
+ - name: doc_mod-cli
+   type: custom
+   build-parameters:
+      no-source: true
+   parameters:
+      memory: 1G
+      health-check-type: none
+      docker:
+         image: alunde/cf-cli:latest
+   provides:
+    - name: doc_mod_api
+      properties:
+         url: ${default-url}
+
  - name: doc_mod-web
    type: html5
    path: web
@@ -16,6 +30,12 @@ modules:
    requires:
     - name: doc_mod-uaa
    ### New Destinations Here ###
+    - name: doc_mod_api
+      group: destinations
+      properties:
+         name: doc_mod_be
+         url: ~{url}
+         forwardAuthToken: true
 
 resources:
 
@@ -28,3 +48,4 @@ resources:
       service: xsuaa
       service-name: DOC_MOD_UAA
    type: org.cloudfoundry.managed-service
+
