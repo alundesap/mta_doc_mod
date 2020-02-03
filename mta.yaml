@@ -1,0 +1,30 @@
+ID: doc_mod
+_schema-version: '2.1'
+description: Test Docker Module
+version: 0.0.1
+
+modules:
+
+### New Modules Here ###
+
+ - name: doc_mod-web
+   type: html5
+   path: web
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   requires:
+    - name: doc_mod-uaa
+   ### New Destinations Here ###
+
+resources:
+
+### New Resources Here ###
+
+ - name: doc_mod-uaa
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+      service-name: DOC_MOD_UAA
+   type: org.cloudfoundry.managed-service
